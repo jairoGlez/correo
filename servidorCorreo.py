@@ -28,4 +28,14 @@ def nuevaCuenta():
     respuesta.headers.add("Access-Control-Allow-Origin","*")
     return respuesta
 
+@app.route("/buscar",methods=["POST"])
+def buscar():
+    print(request.form)
+    palabra = request.form["palabra"]
+    lista = cuenta.buscar(palabra)
+    respuesta = jsonify(lista)
+    respuesta.headers.add("Access-Control-Allow-Origin","*")
+
+    return respuesta
+
 app.run()
