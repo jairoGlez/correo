@@ -6,6 +6,7 @@ class Menu:
         while True:
             print("1) Mostrar usuario")
             print("2) Agregar usuario")
+            print("3) Buscar")
             print("0) Salir")
             op = input()
 
@@ -13,6 +14,8 @@ class Menu:
                 self.mostrar()
             elif op == "2":
                 self.agregar()
+            elif op == "3":
+                self.buscar()
             elif op == "0":
                 break
 
@@ -26,3 +29,10 @@ class Menu:
         direccion = input("Direccion: ")
         password = input("Contraseña: ")
         self.c.insertarCuenta([nombre,direccion,password])
+
+    def buscar(self):
+        palabra = input("Ingresa el correo: ")
+        lista = self.c.buscar(palabra)
+
+        for c in lista:
+            print("{0:2}{1:10}{2:20}{3:10}".format(c["id"],c["nombre"],c["direccion"],c["contraseña"]))
